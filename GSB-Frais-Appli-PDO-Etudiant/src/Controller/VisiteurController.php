@@ -4,15 +4,16 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class VisiteurController extends AbstractController
 {
-    #[Route('/visiteur', name: 'app_visiteur')]
-    public function index(): Response
+    public function connecter(): Response
     {
-        return $this->render('visiteur/index.html.twig', [
+        return $this->render('visiteur/connexionVisiteur.html.twig', [
             'controller_name' => 'VisiteurController',
         ]);
     }
 }
+
+/*$login = $_GET[ 'login' ] ;
+$mdp = $_GET[ 'mdp' ] ;*/
