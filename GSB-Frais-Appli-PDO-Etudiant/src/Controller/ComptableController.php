@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ComptableController extends AbstractController
 {
 
-    public function connecter(): Response{
+    public function connexion(): Response{
 
         return $this->render('comptable/connexionComptable.html.twig', [
             'controller_name' => 'ComptableController',

@@ -5,8 +5,8 @@ function connecterVisiteur($login, $mdp){
     try {
 
         $bd = new PDO(
-                        'mysql:host=localhost;dbname=sbateliers' ,
-                        'Sb2022' ,
+                        'mysql:host=localhost;dbname=gsbFrais' ,
+                        'adminGsb' ,
                         'azerty'
         ) ;
         $sql = 'select nom , prenom '
@@ -15,30 +15,27 @@ function connecterVisiteur($login, $mdp){
         . 'and mdp = :mdp' ;
         
             
-    $st = $bd -> prepare( $sql ) ;
+        $st = $bd -> prepare( $sql ) ;
 
-    $st -> execute( array( 
-                            ':login' => $login ,
-                            ':mdp' => $mdp 
-                    ) 
-                ) ;
-    $resultat = $st -> fetchall() ;
-        
-    unset( $bd ) ;
+        $st -> execute( array( 
+                                ':login' => $login ,
+                                ':mdp' => $mdp 
+                        ) 
+                    ) ;
+        $resultat = $st -> fetchall() ;
+            
+        unset( $bd ) ;
 
-    if( count( $resultat ) == 1 ) {
-        session_start() ;
-        $_SESSION[ 'nom' ] = $resultat[0]['nom'] ;
-        $_SESSION[ 'prenom' ] = $resultat[0]['prenom'] ;
-        
-        $_SESSION[ 'login' ] = $login ;
-        
-        echo'Bienvenue !' ;
-    }
-    else {
-        header( 'Location: ../index.php?echec=1&login=' . $login ) ;
-    }
-    }
+        if( count( $resultat ) == 1 ) {
+            session_start() ;
+            $_SESSION[ 'nom' ] = $resultat[0]['nom'] ;
+            $_SESSION[ 'prenom' ] = $resultat[0]['prenom'] ;
+            
+            $_SESSION[ 'login' ] = $login ;
+            
+        }
+
+        }
 
     catch( PDOException $e ){
 
@@ -51,9 +48,9 @@ function connecterComptable($login, $mdp){
     try {
 
         $bd = new PDO(
-                        'mysql:host=localhost;dbname=sbateliers' ,
-                        'Sb2022' ,
-                        'azerty'
+            'mysql:host=localhost;dbname=gsbFrais' ,
+            'adminGsb' ,
+            'azerty'
         ) ;
         $sql = 'select nom , prenom '
         . 'from Visiteur '
