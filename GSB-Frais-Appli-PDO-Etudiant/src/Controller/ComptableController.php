@@ -8,13 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ComptableController extends AbstractController
 {
-
-    public function connexion(): Response{
-
+    public function connexion(): Response
+    {
         return $this->render('comptable/connexionComptable.html.twig', [
             'controller_name' => 'ComptableController',
-        ]);
-        
+        ]); 
     }
 }
 /*$login = $_GET[ 'login' ] ;

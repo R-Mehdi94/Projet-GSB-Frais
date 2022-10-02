@@ -8,9 +8,9 @@ app_accueil:
   controller: App\Controller\AccueilController::index
 
 
-app_ComptableConnexion:
-  path: /Comptable/Connexion
-  controller: App\Controller\ComptableController::connexion
+#app_ComptableConnexion:
+#  path: /Comptable/Connexion
+#  controller: App\Controller\ComptableController::connexion
 
 app_VisiteurConnexion:
   path: /Visiteur/Connexion

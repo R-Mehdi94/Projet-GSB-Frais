@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Controller;
+require_once("modele/connexionUtilisateur");
+
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,8 +20,7 @@ class VisiteurController extends AbstractController
 
         $login = $_GET[ 'login' ] ;
         $mdp= $_GET[ 'mdp' ] ;
-
-        $user = connexionUtilisateur($login, $mdp);
+        $user = connecterVisiteur($login, $mdp);
 
         if($user!= null){
             return "bon";
