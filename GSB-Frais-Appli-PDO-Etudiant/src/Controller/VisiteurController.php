@@ -15,19 +15,33 @@ class VisiteurController extends AbstractController
         ]);
     }
 
-    public function connecter(){
+    /*public function accueil(): Response
+    {
+        return $this->render('visiteur/accueilVisiteur.html.twig', [
+            'controller_name' => 'VisiteurController',
+        ]);
+    }*/
 
-        $login = $_GET[ 'login' ] ;
-        $mdp= $_GET[ 'mdp' ] ;
+    public function connecter(): Response{
+
+        $login = $_POST[ 'login' ] ;
+        $mdp= $_POST[ 'mdp' ] ;
+        
         $user = connecterVisiteur($login, $mdp);
 
         if($user!= null){
-            return "bon";
+            return $this->redirect('/Visiteur/Accueil');
         }
         else{
-            'Pas bon';
+            return $this->render('visiteur/connexionVisiteur.html.twig', [
+                'controller_name' => 'VisiteurController',
+            ]);
         }
 
     }
+
+    
+
+    
 }
 

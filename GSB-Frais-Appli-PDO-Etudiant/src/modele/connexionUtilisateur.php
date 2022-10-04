@@ -1,37 +1,38 @@
 <?php
 namespace App\Controller;
 use PDO;
-use App\Controller\ConnexionBdd;
+require_once("ConnexionBdd.php");
 
 function connecterVisiteur($login, $mdp){
     try {
 
-        $bd = ConnexionBdd::getConnexion();
-        $sql = 'select nom , prenom '
-        . 'from Visiteur '
-        . 'where login = :login '
-        . 'and mdp = :mdp' ;
-        
-            
-        $st = $bd -> prepare( $sql ) ;
+            $bd = new PDO(
+                'mysql:host=localhost;dbname=gsbFrais' ,
+                'adminGsb' ,
+                'azerty'
+            );
 
-        $st -> execute( array( 
-                                ':login' => $login ,
-                                ':mdp' => $mdp 
-                        ) 
-                    ) ;
-        $resultat = $st -> fetchall() ;
+            $sql = 'select nom , prenom '
+            . 'from Visiteur '
+            . 'where login = :login '
+            . 'and mdp = :mdp' ;
             
-        unset( $bd ) ;
+                
+            $st = $bd -> prepare( $sql ) ;
 
-        if( count( $resultat ) == 1 ) {
-            session_start() ;
-            $_SESSION[ 'nom' ] = $resultat[0]['nom'] ;
-            $_SESSION[ 'prenom' ] = $resultat[0]['prenom'] ;
-            
-            $_SESSION[ 'login' ] = $login ;
-            
-        }
+            $st -> execute( array( 
+                                    ':login' => $login ,
+                                    ':mdp' => $mdp 
+                            ) 
+                        ) ;
+            $resultat = $st -> fetchall() ;
+
+            if( count( $resultat ) == 1 ) {
+                return $resultat;
+            }
+            else{
+                return null;
+            }
 
         }
 
@@ -61,20 +62,12 @@ function connecterComptable($login, $mdp){
                     ) 
                 ) ;
     $resultat = $st -> fetchall() ;
-        
-    unset( $bd ) ;
 
     if( count( $resultat ) == 1 ) {
-        session_start() ;
-        $_SESSION[ 'nom' ] = $resultat[0]['nom'] ;
-        $_SESSION[ 'prenom' ] = $resultat[0]['prenom'] ;
-        
-        $_SESSION[ 'login' ] = $login ;
-        
-        echo'Bienvenue !' ;
+        return $resultat;
     }
     else {
-        header( 'Location: ../index.php?echec=1&login=' . $login ) ;
+        return null;
     }
     }
 
