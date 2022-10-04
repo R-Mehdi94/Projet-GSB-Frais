@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use PDO;
-require_once("ConnexionBdd.php");
+use App\Controller\ConnexionBdd;
 
 function connecterVisiteur($login, $mdp){
     try {

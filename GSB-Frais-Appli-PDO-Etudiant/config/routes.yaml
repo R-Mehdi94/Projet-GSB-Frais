@@ -15,3 +15,7 @@ app_accueil:
 app_VisiteurConnexion:
   path: /Visiteur/Connexion
   controller: App\Controller\VisiteurController::connexion
+
+  app_VisiteurConnecter:
+  path: /Visiteur/Connecter
+  controller: App\Controller\VisiteurController::connecter

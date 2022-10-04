@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Controller;
-require_once("modele/connexionUtilisateur");
-
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use App\Controller\connexionUtilisateur;
 
 class VisiteurController extends AbstractController
 {
