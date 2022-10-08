@@ -22,4 +22,4 @@ app_VisiteurConncter:
 
 app_VisiteurAccueil:
   path: /Visiteur/Accueil
-  controller: App\Controller\VisiteurController::accueil
+  controller: App\Controller\AccueilController::accueil

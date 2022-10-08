@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Controller\connexionUtilisateur;
+use App\Controller\classes;
+
 
 class VisiteurController extends AbstractController
 {
@@ -15,12 +16,6 @@ class VisiteurController extends AbstractController
         ]);
     }
 
-    /*public function accueil(): Response
-    {
-        return $this->render('visiteur/accueilVisiteur.html.twig', [
-            'controller_name' => 'VisiteurController',
-        ]);
-    }*/
 
     public function connecter(): Response{
 
@@ -30,7 +25,7 @@ class VisiteurController extends AbstractController
         $user = connecterVisiteur($login, $mdp);
 
         if($user!= null){
-            return $this->redirect('/Visiteur/Accueil');
+            return $this->redirect('./Accueil');
         }
         else{
             return $this->render('visiteur/connexionVisiteur.html.twig', [
@@ -38,6 +33,13 @@ class VisiteurController extends AbstractController
             ]);
         }
 
+    }
+
+    public function accueil(): Response
+    {
+        return $this->render('visiteur/accueilVisiteur.html.twig', [
+            'controller_name' => 'VisiteurController',
+        ]);
     }
 
     

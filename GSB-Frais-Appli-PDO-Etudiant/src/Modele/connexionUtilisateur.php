@@ -1,16 +1,15 @@
 <?php
 namespace App\Controller;
 use PDO;
-require_once("ConnexionBdd.php");
-
+use App\Controller\classes;
 function connecterVisiteur($login, $mdp){
     try {
 
-            $bd = new PDO(
-                'mysql:host=localhost;dbname=gsbFrais' ,
-                'adminGsb' ,
-                'azerty'
-            );
+        new PDO(
+            'mysql:host=localhost;dbname=gsbFrais' ,
+            'adminGsb' ,
+            'azerty'
+);
 
             $sql = 'select nom , prenom '
             . 'from Visiteur '
