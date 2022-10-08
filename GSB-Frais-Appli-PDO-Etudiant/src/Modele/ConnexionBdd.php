@@ -1,9 +1,9 @@
 <?php
-namespace App\Controller;
+namespace App\Modele;
 use PDO;
 /* final = constante */
 /* static = attribue de classe */ 
-   final class ConnexionBdd{
+   class ConnexionBdd{
         private static $connexion =null;
 
         private function __construc(){

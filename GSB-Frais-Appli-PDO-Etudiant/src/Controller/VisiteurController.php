@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Controller\classes;
+use App\Controller\connexionUtilisateur;
 
 
 class VisiteurController extends AbstractController
@@ -21,7 +21,6 @@ class VisiteurController extends AbstractController
 
         $login = $_POST[ 'login' ] ;
         $mdp= $_POST[ 'mdp' ] ;
-        
         $user = connecterVisiteur($login, $mdp);
 
         if($user!= null){

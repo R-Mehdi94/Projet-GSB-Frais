@@ -1,11 +1,11 @@
 <?php
 namespace App\Controller;
 use PDO;
-use App\Controller\classes;
+use App\Modele\ConnexionBdd;
 function connecterVisiteur($login, $mdp){
     try {
 
-        new PDO(
+        $bd = new PDO(
             'mysql:host=localhost;dbname=gsbFrais' ,
             'adminGsb' ,
             'azerty'
@@ -45,7 +45,7 @@ function connecterVisiteur($login, $mdp){
 function connecterComptable($login, $mdp){
     try {
 
-        $bd = ConnexionBdd::getConnexion();
+        /*$bd = ConnexionBdd::getConnexion();*/
 
         $sql = 'select nom , prenom '
         . 'from Visiteur '
