@@ -27,9 +27,7 @@ class VisiteurController extends AbstractController
             return $this->redirect('./Accueil');
         }
         else{
-            return $this->render('visiteur/connexionVisiteur.html.twig', [
-                'controller_name' => 'VisiteurController',
-            ]);
+            return $this->redirect('./Connexion');
         }
 
     }

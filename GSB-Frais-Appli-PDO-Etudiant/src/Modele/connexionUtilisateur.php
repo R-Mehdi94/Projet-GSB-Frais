@@ -5,11 +5,14 @@ use App\Modele\ConnexionBdd;
 function connecterVisiteur($login, $mdp){
     try {
 
+        /*$bd = ConnexionBdd::getConnexion();*/
+
         $bd = new PDO(
+
             'mysql:host=localhost;dbname=gsbFrais' ,
             'adminGsb' ,
             'azerty'
-);
+        );
 
             $sql = 'select nom , prenom '
             . 'from Visiteur '
@@ -40,7 +43,8 @@ function connecterVisiteur($login, $mdp){
         die("Erreur : " . $e->getMessage());
         header( 'Location: ../index.php?echec=0' ) ;
     }
-} 
+}
+
 
 function connecterComptable($login, $mdp){
     try {
