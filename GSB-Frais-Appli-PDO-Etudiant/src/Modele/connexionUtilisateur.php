@@ -49,10 +49,18 @@ function connecterVisiteur($login, $mdp){
 function connecterComptable($login, $mdp){
     try {
 
+
+        $bd = new PDO(
+
+            'mysql:host=localhost;dbname=gsbFrais' ,
+            'adminGsb' ,
+            'azerty'
+        );
+        
         /*$bd = ConnexionBdd::getConnexion();*/
 
         $sql = 'select nom , prenom '
-        . 'from Visiteur '
+        . 'from Comptable '
         . 'where login = :login '
         . 'and mdp = :mdp' ;
         

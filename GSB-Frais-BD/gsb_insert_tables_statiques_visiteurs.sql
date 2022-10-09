@@ -53,3 +53,13 @@ INSERT INTO `Visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 ('f39', 'Frémont', 'Fernande', 'ffremont', 'xs5tq', '4 route de la mer', '13012', 'Allauh', '1998-10-01'),
 ('f4', 'Gest', 'Alain', 'agest', 'dywvt', '30 avenue de la mer', '13025', 'Berre', '1985-11-01');
 -- --------------------------------------------------------
+
+--
+-- Contenu de la table `Visiteur`
+--
+
+INSERT INTO `Comptable` (`id`, `nom`, `prenom`, `login`, `mdp`) VALUES
+('c1', 'Boboch', 'Rémi', 'rboboch', 'azerty'),
+('c2', 'Villechalane', 'Louis', 'lvillachane', 'jux7g'),
+('c3', 'Villechalane', 'Louis', 'lvillachane', 'jux7g');
+-- --------------------------------------------------------
