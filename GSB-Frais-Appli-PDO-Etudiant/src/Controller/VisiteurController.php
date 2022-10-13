@@ -25,6 +25,7 @@ class VisiteurController extends AbstractController
 
         if($user!= null){
             return $this->redirect('./Accueil');
+            session_start();
         }
         else{
             return $this->redirect('./Connexion');
@@ -35,6 +36,13 @@ class VisiteurController extends AbstractController
     public function accueil(): Response
     {
         return $this->render('visiteur/accueilVisiteur.html.twig', [
+            'controller_name' => 'VisiteurController',
+        ]);
+    }
+
+    public function ficheFrais(): Response
+    {
+        return $this->render('visiteur/ficheFraisVisiteur.html.twig', [
             'controller_name' => 'VisiteurController',
         ]);
     }
