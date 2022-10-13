@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Modele;
 use PDO;
 use App\Modele\ConnexionBdd;
 function connecterVisiteur($login, $mdp){

@@ -16,6 +16,7 @@ class VisiteurController extends AbstractController
         ]);
     }
 
+    
 
     public function connecter(): Response{
 
@@ -33,12 +34,16 @@ class VisiteurController extends AbstractController
 
     }
 
+
+
     public function accueil(): Response
     {
         return $this->render('visiteur/accueilVisiteur.html.twig', [
             'controller_name' => 'VisiteurController',
         ]);
     }
+
+
 
     public function ficheFrais(): Response
     {
@@ -47,7 +52,39 @@ class VisiteurController extends AbstractController
         ]);
     }
 
-    
+
+
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $fichefrais = $entityManager
+            ->getRepository(Fichefrais::class)
+            ->findAll();
+
+        return $this->render('fichefrais/index.html.twig', [
+            'fichefrais' => $fichefrais,
+        ]);
+    }
+
+
+
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $fichefrai = new Fichefrais();
+        $form = $this->createForm(FichefraisType::class, $fichefrai);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($fichefrai);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_fichefrais_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('fichefrais/new.html.twig', [
+            'fichefrai' => $fichefrai,
+            'form' => $form,
+        ]);
+    }
 
     
 }

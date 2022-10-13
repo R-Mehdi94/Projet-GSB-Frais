@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+
+<title>Edit Fichefrais</title>
+
+{% block body %}
+    <h1>Edit Fichefrais</h1>
+
+    {{ include('fichefrais/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_fichefrais_index') }}">back to list</a>
+
+    {{ include('fichefrais/_delete_form.html.twig') }}
+{% endblock %}
