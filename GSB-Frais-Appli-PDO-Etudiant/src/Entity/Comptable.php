@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ComptableRepository;
 
 /**
  * Comptable
  *
  * @ORM\Table(name="Comptable")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=ComptableRepository::class)
  */
 class Comptable
 {

@@ -16,7 +16,7 @@ use PDO;
 
         public static function getConnexion(){
             if(self::$connexion==null){
-                new ConnexionBdd;
+                new ConnexionBdd();
             }
             return self::$connexion;
         }

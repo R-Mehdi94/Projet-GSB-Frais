@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VisiteurRepository;
+
 
 /**
  * Visiteur
  *
  * @ORM\Table(name="Visiteur")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=VisiteurRepository::class)
  */
 class Visiteur
 {
@@ -18,7 +20,6 @@ class Visiteur
      *
      * @ORM\Column(name="id", type="string", length=4, nullable=false, options={"fixed"=true})
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -77,18 +78,6 @@ class Visiteur
      * @ORM\Column(name="dateEmbauche", type="date", nullable=true)
      */
     private $dateembauche;
-
-    public function __toString(){
-        return $this->id;
-        return $this->nom;
-        return $this->prenom;
-        return $this->login;
-        return $this->mdp;
-        return $this->adresse;
-        return $this->cp;
-        return $this->ville;
-        return $this->dateembauche;
-    }
 
     public function getId(): ?string
     {

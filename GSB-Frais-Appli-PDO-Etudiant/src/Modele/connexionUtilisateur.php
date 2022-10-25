@@ -5,14 +5,14 @@ use App\Modele\ConnexionBdd;
 function connecterVisiteur($login, $mdp){
     try {
 
-        /*$bd = ConnexionBdd::getConnexion();*/
+        $bd = ConnexionBdd::getConnexion();
 
-        $bd = new PDO(
+        /*$bd = new PDO(
 
             'mysql:host=localhost;dbname=gsbFrais' ,
             'adminGsb' ,
             'azerty'
-        );
+        );*/
 
             $sql = 'select nom , prenom '
             . 'from Visiteur '

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Controller\connexionUtilisateur;
+use App\Modele\connexionUtilisateur;
 
 
 class VisiteurController extends AbstractController
@@ -54,37 +54,7 @@ class VisiteurController extends AbstractController
 
 
 
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $fichefrais = $entityManager
-            ->getRepository(Fichefrais::class)
-            ->findAll();
-
-        return $this->render('fichefrais/index.html.twig', [
-            'fichefrais' => $fichefrais,
-        ]);
-    }
-
-
-
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $fichefrai = new Fichefrais();
-        $form = $this->createForm(FichefraisType::class, $fichefrai);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($fichefrai);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_fichefrais_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('fichefrais/new.html.twig', [
-            'fichefrai' => $fichefrai,
-            'form' => $form,
-        ]);
-    }
+   
 
     
 }

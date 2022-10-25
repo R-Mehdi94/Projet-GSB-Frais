@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EtatRepository;
+
 
 /**
  * Etat
  *
  * @ORM\Table(name="Etat")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=EtatRepository::class)
  */
 class Etat
 {
@@ -27,11 +29,6 @@ class Etat
      * @ORM\Column(name="libelle", type="string", length=30, nullable=true)
      */
     private $libelle;
-
-    public function __toString(){
-        return $this->id;
-        return $this->libelle;
-    }
 
     public function getId(): ?string
     {

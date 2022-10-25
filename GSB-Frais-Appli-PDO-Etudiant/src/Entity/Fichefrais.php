@@ -2,16 +2,16 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\FichefraisRepository;
+
 
 /**
  * Fichefrais
  *
  * @ORM\Table(name="FicheFrais", indexes={@ORM\Index(name="idEtat", columns={"idEtat"}), @ORM\Index(name="IDX_1C4987DC1D06ADE3", columns={"idVisiteur"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=FichefraisRepository::class)
  */
 class Fichefrais
 {
@@ -67,31 +67,9 @@ class Fichefrais
      */
     private $idvisiteur;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Fraisforfait", mappedBy="idvisiteur")
-     */
-    private $idfraisforfait = array();
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idfraisforfait = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     public function getMois(): ?string
     {
         return $this->mois;
-    }
-
-    public function setMois(?String $mois): self
-    {
-        $this->mois = $mois;
-
-        return $this;
     }
 
     public function getNbjustificatifs(): ?int
@@ -154,31 +132,5 @@ class Fichefrais
         return $this;
     }
 
-    /**
-     * @return Collection<int, Fraisforfait>
-     */
-    public function getIdfraisforfait(): Collection
-    {
-        return $this->idfraisforfait;
-    }
-
-    public function addIdfraisforfait(Fraisforfait $idfraisforfait): self
-    {
-        if (!$this->idfraisforfait->contains($idfraisforfait)) {
-            $this->idfraisforfait->add($idfraisforfait);
-            $idfraisforfait->addIdvisiteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdfraisforfait(Fraisforfait $idfraisforfait): self
-    {
-        if ($this->idfraisforfait->removeElement($idfraisforfait)) {
-            $idfraisforfait->removeIdvisiteur($this);
-        }
-
-        return $this;
-    }
 
 }

@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\LignefraishorsforfaitRepository;
+
 
 /**
  * Lignefraishorsforfait
  *
  * @ORM\Table(name="LigneFraisHorsForfait", indexes={@ORM\Index(name="idVisiteur", columns={"idVisiteur", "mois"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=LignefraishorsforfaitRepository::class)
  */
 class Lignefraishorsforfait
 {
