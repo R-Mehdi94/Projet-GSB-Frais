@@ -4,7 +4,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use App\Modele\connexionUtilisateur;
+use Symfony\Component\HttpFoundation\Request;
+use App\Modele\ConnexionBdd;
+use App\Entity\Fichefrais;
+use App\Form\FicheFraisType;
 
 
 class VisiteurController extends AbstractController
@@ -22,11 +25,17 @@ class VisiteurController extends AbstractController
 
         $login = $_POST[ 'login' ] ;
         $mdp= $_POST[ 'mdp' ] ;
-        $user = connecterVisiteur($login, $mdp);
+        $user = ConnexionBdd::connecterVisiteur($login, $mdp);
 
         if($user!= null){
-            return $this->redirect('./Accueil');
+
             session_start();
+
+            $_SESSION[ "id" ] = $user[ "id" ] ;
+            $_SESSION[ "nom" ] = $user[ "nom" ] ; 
+            $_SESSION[ "prenom" ] = $user[ "prenom" ] ; 
+            
+            return $this->redirect('./Accueil');
         }
         else{
             return $this->redirect('./Connexion');
@@ -34,10 +43,19 @@ class VisiteurController extends AbstractController
 
     }
 
+    public function deconnecter(): Response{
+        session_start();
+        session_destroy() ;
+        return $this->render('visiteur/connexionVisiteur.html.twig', [
+            'controller_name' => 'VisiteurController',
+        ]);
+    }
+
 
 
     public function accueil(): Response
     {
+        session_start();
         return $this->render('visiteur/accueilVisiteur.html.twig', [
             'controller_name' => 'VisiteurController',
         ]);
@@ -45,10 +63,21 @@ class VisiteurController extends AbstractController
 
 
 
-    public function ficheFrais(): Response
+    public function ficheFrais(Request $request): Response
     {
-        return $this->render('visiteur/ficheFraisVisiteur.html.twig', [
-            'controller_name' => 'VisiteurController',
+        $ficheFrais = new Fichefrais();
+
+        $ficheFraisForm = $this->createForm(FicheFraisType::class,$ficheFrais);
+
+        $ficheFraisForm->handleRequest($request);
+
+        if($ficheFraisForm->isSubmitted() && $ficheFraisForm->isValid()){
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ficheFrais);
+            $em->flush();
+        }
+        return $this->renderForm('visiteur/ficheFraisVisiteur.html.twig', [
+            'ficheFraisForm' => $ficheFraisForm,
         ]);
     }
 

@@ -19,6 +19,10 @@ app_VisiteurConnecter:
   path: /Visiteur/Connecter
   controller: App\Controller\VisiteurController::connecter
 
+app_VisiteurDeconnecter:
+  path: /Visiteur/Deconnecter
+  controller: App\Controller\VisiteurController::deconnecter
+
 app_VisiteurAccueil:
   path: /Visiteur/Accueil
   controller: App\Controller\VisiteurController::accueil

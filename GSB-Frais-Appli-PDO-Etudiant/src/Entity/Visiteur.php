@@ -79,6 +79,19 @@ class Visiteur
      */
     private $dateembauche;
 
+    public function __toString() {
+        return $this->id;
+        return $this->nom;
+        return $this->prenom;
+        return $this->login;
+        return $this->mdp;
+        return $this->adresse;
+        return $this->cp;
+        return $this->ville;
+        return $this->dateembauche;
+    }
+
+
     public function getId(): ?string
     {
         return $this->id;
@@ -180,5 +193,6 @@ class Visiteur
         return $this;
     }
 
+   
 
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use App\Modele\ConnexionBdd;
 
 
 class ComptableController extends AbstractController
@@ -18,10 +19,17 @@ class ComptableController extends AbstractController
 
         $login = $_POST[ 'login' ] ;
         $mdp= $_POST[ 'mdp' ] ;
-        
-        $user = connecterComptable($login, $mdp);
+        $user = ConnexionBdd::connecterComptable($login, $mdp);
 
+        
         if($user!= null){
+
+            session_start();
+
+            $_SESSION[ "id" ] = $user[ "id" ] ;
+            $_SESSION[ "nom" ] = $user[ "nom" ] ; 
+            $_SESSION[ "prenom" ] = $user[ "prenom" ] ; 
+
             return $this->redirect('./Accueil');
         }
         else{
