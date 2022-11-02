@@ -30,7 +30,7 @@ USE gsbFrais;
 
 
 CREATE TABLE IF NOT EXISTS `FraisForfait` (
-  `id` char(3) NOT NULL,
+  `id` char(3)  NOT NULL,
   `libelle` char(20) DEFAULT NULL,
   `montant` decimal(5,2) DEFAULT NULL,
   PRIMARY KEY (`id`)

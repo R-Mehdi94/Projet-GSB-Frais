@@ -1,61 +1,15 @@
-<!--<html lang="fr">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>GSB Frais - Visiteur Fiche de frais</title>
-    </head>
-    <body>
 
-        <h1> Veuillez rensengner votre fiche de frais </h1>
+{% block body %}
 
-        <form action="./Connecter" method="POST">
-                        
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Identifiant</label>
-            <input type="text" class="form-control" name="idVisiteur" /> 
-        </div>
-        
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Mois</label>
-            <input type="text"  class="form-control" name="mois" />
-        </div>
+    <h1> Veuillez renseigner votre fiche de frais </h1>
 
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Nombre de justificatifs</label>
-            <input type="number"  class="form-control" name="nbJustificatifs" />
-        </div>
-        
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Montant valide</label>
-            <input type="number"  class="form-control" name="montantValide" />
-        </div>
+    {{ form_start(ficheFraisForm) }}
+    {{form_row(ficheFraisForm.mois, {'attr' : {'placeholder' : 'Mois'}} )}}
 
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Date de modification</label>
-            <input type="date"  class="form-control" name="dateModif" />
-        </div>
+    {{form_widget(ficheFraisForm)}}
 
-        <div class="mb-3 form-group">
-            <label class="col-form-label">Identifiant etat</label>
-            <input type="text"  class="form-control" name="idEtat" />
-        </div>
-        
-        <div class="mb-3">
-            <button class="btn btn-primary" type="submit">Valider</button>
-            <button class="btn btn-primary" type="reset">Annuler</button>
-        </div>
+    <button type="submit">Valider</button>
 
-    </form>
+    {{ form_end(ficheFraisForm) }}
 
-    </body>
-</html>-->
-
-
-<!DOCTYPE html>
-
-<title>New Fichefrais</title>
-
-    {{ form(ficheFraisForm) }}
-
+{% endblock %}

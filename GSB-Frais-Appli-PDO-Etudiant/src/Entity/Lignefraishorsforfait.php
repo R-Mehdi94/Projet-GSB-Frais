@@ -56,6 +56,14 @@ class Lignefraishorsforfait
      */
     private $idvisiteur;
 
+    public function __toString() {
+        return $this->id;
+        return $this->libelle;
+        return $this->date;
+        return $this->$idvisiteur;
+        return $this->montant;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

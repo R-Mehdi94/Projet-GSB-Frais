@@ -67,6 +67,15 @@ class Fichefrais
      */
     private $idvisiteur;
 
+    public function __toString() {
+        return $this->mois;
+        return $this->nbjustificatifs;
+        return $this->montantvalide;
+        return $this->$datemodif;
+        return $this->idetat;
+        return $this->idvisiteur;
+    }
+
     public function getMois(): ?string
     {
         return $this->mois;

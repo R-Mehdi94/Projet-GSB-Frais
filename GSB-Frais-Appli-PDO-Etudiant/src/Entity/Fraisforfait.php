@@ -37,9 +37,22 @@ class Fraisforfait
      */
     private $montant;
 
+    public function __toString() {
+        return $this->id;
+        return $this->libelle;
+        return $this->montant;
+    }
+
     public function getId(): ?string
     {
         return $this->id;
+    }
+
+    public function setId(?string $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getLibelle(): ?string

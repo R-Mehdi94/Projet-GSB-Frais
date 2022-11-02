@@ -1,0 +1,13 @@
+{% block body %}
+
+    <h1> Veuillez renseigner votre frais forfaitisé </h1>
+
+    {{ form_start(ficheForfaitForm) }}
+
+    {{form_widget(ficheForfaitForm)}}
+
+    <button type="submit">Valider</button>
+
+    {{ form_end(ficheForfaitForm) }}
+
+{% endblock %}
