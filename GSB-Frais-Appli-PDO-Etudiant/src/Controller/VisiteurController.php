@@ -67,6 +67,7 @@ class VisiteurController extends AbstractController
 
     public function ficheFrais(Request $request): Response
     {
+
         $ficheFrais = new Fichefrais();
 
         $ficheFraisForm = $this->createForm(FicheFraisType::class,$ficheFrais);
@@ -78,9 +79,9 @@ class VisiteurController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($ficheFrais);
             $em->flush();
+            $_SESSION['mes_data'] = $ficheFraisForm['idvisiteur']->getData();
 
-            //return $this->redirect('./HorsForfait');
-            return $request;
+            return $this->redirect('./HorsForfait');
         }
         return $this->render('visiteur/ficheFraisVisiteur.html.twig', [
             'ficheFraisForm' => $ficheFraisForm->createView(),
@@ -117,16 +118,19 @@ class VisiteurController extends AbstractController
         $fraisHorsForfaitForm = $this->createForm(LigneFraisHorsForfaitType::class,$fraisHorsForfait);
 
         $fraisHorsForfaitForm->handleRequest($request);
+        $data = $_SESSION['mes_data'];
+        $fraisHorsForfaitForm['idvisiteur']->setData($data);
 
-        if($fraisHorsForfaitForm->isSubmitted() && $fraisHorsForfaitForm->isValid()){
 
+
+        if($fraisHorsForfaitForm->isSubmitted() && $fraisHorsForfaitForm->isValid() /*&& $data instanceof Fichefrais*/ ){
+            $data = $_SESSION['mes_data'];
             $em = $this->getDoctrine()->getManager();
+            //$fraisHorsForfaitForm['idvisiteur']->setData($data);
             $em->persist($fraisHorsForfait);
-            $request->request->get('idVisiteur');
             $em->flush();
 
             return $this->redirect('./Accueil');
-            return $request;
         }
         return $this->render('visiteur/fraisHorsForfaitVisiteur.html.twig', [
             'fraisHorsForfaitForm' => $fraisHorsForfaitForm -> createView(),
