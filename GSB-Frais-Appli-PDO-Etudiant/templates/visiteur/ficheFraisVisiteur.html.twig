@@ -1,15 +1,40 @@
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>GSB Frais - Connexion</title>
+    </head>
+    <body>
+        <form action="./FicheDeFrais" method="GET">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Forfait Etape</td>
+                        <td> <input type="number" placeholder="0" name="frais"required> </td>
+                    </tr>
 
-{% block body %}
 
-    <h1> Veuillez renseigner votre fiche de frais </h1>
+                    {#<tr>
+                        <td>Frais Kilométrique</td>
+                        <td> <input type="number" placeholder="0" name="frais"> </td>
+                    </tr>
 
-    {{ form_start(ficheFraisForm) }}
-    {{form_row(ficheFraisForm.mois, {'attr' : {'placeholder' : 'Mois'}} )}}
 
-    {{form_widget(ficheFraisForm)}}
+                    <tr>
+                        <td>Nuitée Hôtel</td>
+                        <td> <input type="number" placeholder="0" name="frais"> </td>
+                    </tr>
+                    
 
-    <button type="submit">Valider</button>
+                    <tr>
+                        <td>Repas Restaurant</td>
+                        <td> <input type="number" placeholder="0" name="frais"> </td>
+                    </tr>#}
+                </tbody>
+            </table>    
+            <input type="submit" id='submit' value="Soumettre" >
+        </form>
 
-    {{ form_end(ficheFraisForm) }}
-
-{% endblock %}
+    </body>
+</html>

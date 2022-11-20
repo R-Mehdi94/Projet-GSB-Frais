@@ -65,29 +65,50 @@ class VisiteurController extends AbstractController
 
 
 
-    public function ficheFrais(Request $request): Response
+    public function ficheFraisVue(): Response
     {
 
-        $ficheFrais = new Fichefrais();
-
-        $ficheFraisForm = $this->createForm(FicheFraisType::class,$ficheFrais);
-
-        $ficheFraisForm->handleRequest($request);
-
-        if($ficheFraisForm->isSubmitted() && $ficheFraisForm->isValid()){
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ficheFrais);
-            $em->flush();
-            $_SESSION['mes_data'] = $ficheFraisForm['idvisiteur']->getData();
-
-            return $this->redirect('./HorsForfait');
-        }
         return $this->render('visiteur/ficheFraisVisiteur.html.twig', [
-            'ficheFraisForm' => $ficheFraisForm->createView(),
+            'ficheFraisForm' => 'fiche',
         ]);
         
     }
+
+    public function ficheFrais(): Response
+    {
+        $fiche = $_GET['frais'];
+        try {
+            $montant = $_GET['frais'];
+            //$mois = date("m");
+        
+            $bd = new PDO( 'mysql:host=localhost;dbname=gsbFrais' ,'adminGsb' ,'azerty' ) ;
+    
+                $sql = 'insert into LigneFraisForfait '
+                . 'values (:idVisiteur, :mois, :idFraisForfait, :quantite ';
+                
+                    
+                $st = $bd -> prepare( $sql ) ;
+    
+                $st -> execute( array( 
+                                        ':idVisiteur' => $_SESSION[ "id" ] ,
+                                        ':mois' => 1,
+                                        ':idFraisForfait' => "ETP",
+                                        ':quantite' => $montant
+                                ) 
+                            ) ;
+                unset($bd);
+
+                return $this->redirect('./Accueil');
+
+            }
+
+
+            catch( PDOException $e ){
+
+                die("Erreur : " . $e->getMessage());
+                header( 'Location: ../index.php?echec=0' ) ;
+            }
+        }
 
 
     /*public function ficheForfait(Request $request): Response
@@ -111,26 +132,25 @@ class VisiteurController extends AbstractController
         ]);
     }*/
 
-    public function fraisHorsForfait(Request $request): Response
+    public function fraisHorsForfait(Request $request, Request $requestTest): Response
     {
+        $test = VisiteurController::ficheFrais($requestTest);
+        echo $test->request;
         $fraisHorsForfait = new Lignefraishorsforfait();
 
         $fraisHorsForfaitForm = $this->createForm(LigneFraisHorsForfaitType::class,$fraisHorsForfait);
 
         $fraisHorsForfaitForm->handleRequest($request);
-        $data = $_SESSION['mes_data'];
-        $fraisHorsForfaitForm['idvisiteur']->setData($data);
 
+        if($fraisHorsForfaitForm->isSubmitted() && $fraisHorsForfaitForm->isValid()){
 
-
-        if($fraisHorsForfaitForm->isSubmitted() && $fraisHorsForfaitForm->isValid() /*&& $data instanceof Fichefrais*/ ){
-            $data = $_SESSION['mes_data'];
             $em = $this->getDoctrine()->getManager();
-            //$fraisHorsForfaitForm['idvisiteur']->setData($data);
             $em->persist($fraisHorsForfait);
+            $request->request->get('idVisiteur');
             $em->flush();
 
             return $this->redirect('./Accueil');
+            return $request;
         }
         return $this->render('visiteur/fraisHorsForfaitVisiteur.html.twig', [
             'fraisHorsForfaitForm' => $fraisHorsForfaitForm -> createView(),

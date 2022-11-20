@@ -27,17 +27,13 @@ app_VisiteurAccueil:
   path: /Visiteur/Accueil
   controller: App\Controller\VisiteurController::accueil
 
-app_VisiteurFicheFrais:
+app_VisiteurFicheFraisVue:
   path: /Visiteur/FicheDeFrais
+  controller: App\Controller\VisiteurController::ficheFraisVue 
+
+app_VisiteurFicheFrais:
+  path: /Visiteur/FicheDeFraisController
   controller: App\Controller\VisiteurController::ficheFrais 
-
-app_VisiteurFraisForfait:
-  path: /Visiteur/FicheForfaitisés
-  controller: App\Controller\VisiteurController::ficheForfait 
-
-app_VisiteurFicheFraitHorsForfait:
-  path: /Visiteur/HorsForfait
-  controller: App\Controller\VisiteurController::fraisHorsForfait 
 
 
 #Comptable----------------------------------------------------------
