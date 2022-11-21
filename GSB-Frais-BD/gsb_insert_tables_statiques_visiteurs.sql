@@ -59,7 +59,5 @@ INSERT INTO `Visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 --
 
 INSERT INTO `Comptable` (`id`, `nom`, `prenom`, `login`, `mdp`) VALUES
-('c1', 'Boboch', 'Rémi', 'rboboch', 'azerty'),
-('c2', 'Villechalane', 'Louis', 'lvillachane', 'jux7g'),
-('c3', 'Villechalane', 'Louis', 'lvillachane', 'jux7g');
+('c1', 'Boboch', 'Rémi', 'rboboch', 'azerty');
 -- --------------------------------------------------------
