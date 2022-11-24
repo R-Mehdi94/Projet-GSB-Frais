@@ -83,15 +83,36 @@ use PDO;
         } 
 
 
+        public static function verifInsertFicheFrais($idVisiteur){
+
+            $bd = ConnexionBdd::getConnexion();
+
+
+            $user = array(':idVisiteur' => $idVisiteur
+                        );
+                        
+            $sql = 'select idVisiteur from LigneFraisForfait WHERE idVisiteur = :idVisiteur';
+
+            $query = $bd->prepare($sql);
+
+            $t = $query->fetch(PDO::FETCH_ASSOC);
+
+            return $t;
+
+        }
+
+
         public static function insertFicheFrais($idVisiteur) {
 
             $bd = ConnexionBdd::getConnexion();
 
+            $date = date('m-Y');
+
             $user = array(':idVisiteur' => $idVisiteur ,
-                          ':mois' => "1"
+                          ':AnneeMois' => $date
                         );
                         
-            $sql = 'insert into FicheFrais(idVisiteur,mois)' . 'values(:idVisiteur, :mois)';
+            $sql = 'insert into FicheFrais(idVisiteur,AnneeMois)' . 'values(:idVisiteur, :AnneeMois)';
             
          
             $query = $bd->prepare($sql);
@@ -100,18 +121,82 @@ use PDO;
         }
 
 
-        public static function insertLigneFraisForfait($idVisiteur,$montant) {
+        public static function verifMontantETP($montantETP){
+
+            if($montantETP == 0 ){
+                return  null;
+            }else{
+                $libelleETP = "ETP";
+                $ETP = array(
+                    "montantETP" => $montantETP,
+                    "libelleETP" => $libelleETP
+                );
+                return $ETP;
+            }
+        }
+
+        
+
+        public static function verifMontantKM($montantKM){
+
+            if($montantKM == 0 ){
+                return  null;
+            }else{
+                $libelleKM = "KM";
+                $KM = array(
+                    "montantKM" => $montantKM,
+                    "libelleKM" => $libelleKM
+                );
+                return $KM;
+            }
+        }
+
+
+
+        public static function verifMontantNUI($montantNUI){
+
+            if($montantNUI == 0 ){
+                return  null;
+            }else{
+                $libelleNUI = "NUI";
+                $NUI = array(
+                    "montantNUI" => $montantNUI,
+                    "libelleNUI" => $libelleNUI
+                );
+                return $NUI;
+            }
+        }
+    
+    
+        public static function verifMontantREP($montantREP){
+
+            if($montantREP == 0 ){
+                return  null;
+            }else{
+                $libelleREP = "REP";
+                $REP = array(
+                    "montantREP" => $montantREP,
+                    "libelleREP" => $libelleREP
+                );
+                return $REP;
+            }
+        }
+
+
+
+        public static function insertLigneFraisForfait($idVisiteur,$montant,$idFraisForfait){
            
             $bd = ConnexionBdd::getConnexion();
 
+            $date = date('m-Y');
 
             $user = array(':idVisiteur' => $idVisiteur ,
-                          ':mois' => "1",
-                          ':idFraisForfait' => "ETP",
+                          ':AnneeMois' => $date,
+                          ':idFraisForfait' => $idFraisForfait,
                           ':quantite' => $montant
                         );
                         
-            $sql = 'insert into LigneFraisForfait ' . 'values (:idVisiteur, :mois, :idFraisForfait, :quantite) ';
+            $sql = 'insert into LigneFraisForfait ' . 'values (:idVisiteur, :AnneeMois, :idFraisForfait, :quantite) ';
             
          
             $query = $bd->prepare($sql);

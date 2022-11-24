@@ -7,6 +7,7 @@ INSERT INTO `FraisForfait` (`id`, `libelle`, `montant`) VALUES
 ('KM', 'Frais Kilométrique', 0.62),
 ('NUI', 'Nuitée Hôtel', 80.00),
 ('REP', 'Repas Restaurant', 25.00);
+
 --
 -- Contenu de la table `LigneFraisForfait`
 --

@@ -355,30 +355,6 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\VisiteurController"/>
       </call>
     </service>
-    <service id="App\Repository\ComptableRepository" class="App\Repository\ComptableRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\EtatRepository" class="App\Repository\EtatRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\FichefraisRepository" class="App\Repository\FichefraisRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\FraisforfaitRepository" class="App\Repository\FraisforfaitRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\LignefraishorsforfaitRepository" class="App\Repository\LignefraishorsforfaitRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
-    <service id="App\Repository\VisiteurRepository" class="App\Repository\VisiteurRepository" autowire="true" autoconfigure="true">
-      <tag name="doctrine.repository_service"/>
-      <argument type="service" id="doctrine"/>
-    </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="response_listener" class="Symfony\Component\HttpKernel\EventListener\ResponseListener">
       <tag name="kernel.event_subscriber"/>
@@ -4065,7 +4041,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.eFBM5MG"/>
+      <argument type="service" id=".service_locator.Xbsa8iG"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4281,8 +4257,7 @@
         <argument type="service" id="doctrine.orm.container_repository_factory"/>
       </call>
     </service>
-    <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver">
-      <argument type="service" id="annotations.cached_reader"/>
+    <service id="doctrine.orm.default_attribute_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AttributeDriver">
       <argument type="collection">
         <argument>/home/r-mehdi/SIO/Projet-GSB-Frais/symfony_gsb/src/Entity</argument>
       </argument>
@@ -5678,7 +5653,7 @@
         <argument key="default" type="collection">
           <argument type="collection">
             <argument>App\Entity</argument>
-            <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+            <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
           </argument>
         </argument>
       </argument>
@@ -5897,18 +5872,6 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\VisiteurController" class="App\Controller\VisiteurController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\VisiteurController" class="App\Controller\VisiteurController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\VisiteurController" class="App\Controller\VisiteurController" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ComptableRepository" class="App\Repository\ComptableRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\ComptableRepository" class="App\Repository\ComptableRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\EtatRepository" class="App\Repository\EtatRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\EtatRepository" class="App\Repository\EtatRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FichefraisRepository" class="App\Repository\FichefraisRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\FichefraisRepository" class="App\Repository\FichefraisRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FraisforfaitRepository" class="App\Repository\FraisforfaitRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\FraisforfaitRepository" class="App\Repository\FraisforfaitRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\LignefraishorsforfaitRepository" class="App\Repository\LignefraishorsforfaitRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\LignefraishorsforfaitRepository" class="App\Repository\LignefraishorsforfaitRepository" autowire="true" autoconfigure="true" abstract="true"/>
-    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VisiteurRepository" class="App\Repository\VisiteurRepository" autowire="true" abstract="true"/>
-    <service id=".abstract.instanceof.App\Repository\VisiteurRepository" class="App\Repository\VisiteurRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.gSv9zYw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6515,16 +6478,9 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.eFBM5MG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
-      <argument type="collection">
-        <argument key="App\Repository\ComptableRepository" type="service_closure" id="App\Repository\ComptableRepository"/>
-        <argument key="App\Repository\EtatRepository" type="service_closure" id="App\Repository\EtatRepository"/>
-        <argument key="App\Repository\FichefraisRepository" type="service_closure" id="App\Repository\FichefraisRepository"/>
-        <argument key="App\Repository\FraisforfaitRepository" type="service_closure" id="App\Repository\FraisforfaitRepository"/>
-        <argument key="App\Repository\LignefraishorsforfaitRepository" type="service_closure" id="App\Repository\LignefraishorsforfaitRepository"/>
-        <argument key="App\Repository\VisiteurRepository" type="service_closure" id="App\Repository\VisiteurRepository"/>
-      </argument>
+      <argument type="collection"/>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -6872,10 +6828,6 @@
         <argument key="reverse_container" type="service_closure" id="reverse_container" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
-    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
-      <tag name="container.service_locator"/>
-      <argument type="collection"/>
-    </service>
     <service id=".service_locator.yKHwqJO" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7092,7 +7044,7 @@
     </service>
     <service id=".doctrine.orm.default_metadata_driver.inner" class="Doctrine\Persistence\Mapping\Driver\MappingDriverChain">
       <call method="addDriver">
-        <argument type="service" id="doctrine.orm.default_annotation_metadata_driver"/>
+        <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
         <argument>App\Entity</argument>
       </call>
     </service>

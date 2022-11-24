@@ -53,15 +53,29 @@ class __TwigTemplate_d270842da37b393ccb2ffe33c8d4fbd1 extends Template
                 <tbody>
                     <tr>
                         <td>Forfait Etape</td>
-                        <td> <input type=\"number\" placeholder=\"0\" name=\"frais\"required> </td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisETP\"required> </td>
                     </tr>
 
 
-                    ";
-        // line 34
-        echo "                </tbody>
+                    <tr>
+                        <td>Frais Kilométrique</td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisKM\"> </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>Nuitée Hôtel</td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisNUI\"> </td>
+                    </tr>
+                    
+
+                    <tr>
+                        <td>Repas Restaurant</td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisREP\"> </td>
+                    </tr>
+                </tbody>
             </table>    
-            <input type=\"submit\" id='submit' value=\"Soumettre\" >
+            <input type=\"submit\" id='submit'  value=\"Soumettre\" >
         </form>
 
     </body>
@@ -81,7 +95,7 @@ class __TwigTemplate_d270842da37b393ccb2ffe33c8d4fbd1 extends Template
 
     public function getDebugInfo()
     {
-        return array (  62 => 34,  43 => 1,);
+        return array (  43 => 1,);
     }
 
     public function getSourceContext()
@@ -99,29 +113,29 @@ class __TwigTemplate_d270842da37b393ccb2ffe33c8d4fbd1 extends Template
                 <tbody>
                     <tr>
                         <td>Forfait Etape</td>
-                        <td> <input type=\"number\" placeholder=\"0\" name=\"frais\"required> </td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisETP\"required> </td>
                     </tr>
 
 
-                    {#<tr>
+                    <tr>
                         <td>Frais Kilométrique</td>
-                        <td> <input type=\"number\" placeholder=\"0\" name=\"frais\"> </td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisKM\"> </td>
                     </tr>
 
 
                     <tr>
                         <td>Nuitée Hôtel</td>
-                        <td> <input type=\"number\" placeholder=\"0\" name=\"frais\"> </td>
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisNUI\"> </td>
                     </tr>
                     
 
                     <tr>
                         <td>Repas Restaurant</td>
-                        <td> <input type=\"number\" placeholder=\"0\" name=\"frais\"> </td>
-                    </tr>#}
+                        <td> <input type=\"number\" min=\"0\" value=\"0\" name=\"fraisREP\"> </td>
+                    </tr>
                 </tbody>
             </table>    
-            <input type=\"submit\" id='submit' value=\"Soumettre\" >
+            <input type=\"submit\" id='submit'  value=\"Soumettre\" >
         </form>
 
     </body>

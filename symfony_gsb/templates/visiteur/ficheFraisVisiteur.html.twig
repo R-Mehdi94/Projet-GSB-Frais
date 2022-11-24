@@ -11,29 +11,29 @@
                 <tbody>
                     <tr>
                         <td>Forfait Etape</td>
-                        <td> <input type="number" placeholder="0" name="frais"required> </td>
+                        <td> <input type="number" min="0" value="0" name="fraisETP"required> </td>
                     </tr>
 
 
-                    {#<tr>
+                    <tr>
                         <td>Frais Kilométrique</td>
-                        <td> <input type="number" placeholder="0" name="frais"> </td>
+                        <td> <input type="number" min="0" value="0" name="fraisKM"> </td>
                     </tr>
 
 
                     <tr>
                         <td>Nuitée Hôtel</td>
-                        <td> <input type="number" placeholder="0" name="frais"> </td>
+                        <td> <input type="number" min="0" value="0" name="fraisNUI"> </td>
                     </tr>
                     
 
                     <tr>
                         <td>Repas Restaurant</td>
-                        <td> <input type="number" placeholder="0" name="frais"> </td>
-                    </tr>#}
+                        <td> <input type="number" min="0" value="0" name="fraisREP"> </td>
+                    </tr>
                 </tbody>
             </table>    
-            <input type="submit" id='submit' value="Soumettre" >
+            <input type="submit" id='submit'  value="Soumettre" >
         </form>
 
     </body>

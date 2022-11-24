@@ -17,6 +17,7 @@ class VisiteurController extends AbstractController
         $status = session_status();
 
         if($status == PHP_SESSION_ACTIVE){
+            session_start();
             session_destroy();
         }
 
@@ -24,6 +25,8 @@ class VisiteurController extends AbstractController
             'controller_name' => 'VisiteurController',
         ]);
     }
+
+    //date();
 
     
 
@@ -104,7 +107,7 @@ class VisiteurController extends AbstractController
 
     }
 
-    public function ficheFrais(): Response
+    public function ficheFrais():Response
     {
 
         session_start();
@@ -112,105 +115,73 @@ class VisiteurController extends AbstractController
         if($_SESSION == NULL){
             return $this->redirect('./Connexion');
         }else{
-            $montant = $_GET['frais'];
+
+            $montantETP = $_GET['fraisETP'];
+            $montantKM = $_GET['fraisKM'];
+            $montantNUI = $_GET['fraisNUI'];
+            $montantREP = $_GET['fraisREP'];
             $idVisiteur = $_SESSION['idVisiteur'];
-            try {
 
+            $ETP = ConnexionBdd::verifMontantETP($montantETP);
+            $KM = ConnexionBdd::verifMontantKM($montantKM);
+            $NUI = ConnexionBdd::verifMontantNUI($montantNUI);
+            $REP = ConnexionBdd::verifMontantREP($montantREP);
+
+            $test = ConnexionBdd::verifInsertFicheFrais($idVisiteur);
+            echo var_dump($test);
+            if($test == true){
                 $obj = ConnexionBdd::insertFicheFrais($idVisiteur);
-                $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $montant);
-                return $this->redirect('./Accueil');
             }
 
+            if($ETP != null){
 
-            catch( PDOException $e ){
-                die("Erreur : " . $e->getMessage());
-            }
-        }
-
-
-        
-        
-
-        try {
-
-            $obj = ConnexionBdd::insertFicheFrais($idVisiteur);
-            $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $montant);
-            //$mois = date("m");
-
-            /*$bd = new PDO( 'mysql:host=localhost;dbname=gsbFrais' ,'adminGsb' ,'azerty' ) ;
-
-                $sql = 'insert into FicheFrais(idVisiteur,mois)' . 'values(:idVisiteur, :mois)' . 'insert into LigneFraisForfait ' . 'values (:idVisiteur, :mois, :idFraisForfait, :quantite ';
-                
-                    
-                $st = $bd -> prepare( $sql ) ;
-
-                $st -> execute( array( 
-                                        ':idVisiteur' => "a131" ,
-                                        ':mois' => "1",
-                                        ':idFraisForfait' => "ETP",
-                                        ':quantite' => $montant
-                                ) 
-                            ) ;
-                unset($bd);*/
-
-                return $this->redirect('./Accueil');
-            }
-
-
-        catch( PDOException $e ){
-            die("Erreur : " . $e->getMessage());
-        }
-        
-    }
-
-
-    /*public function ficheForfait(Request $request): Response
-    {
-        $ficheForfait = new Fraisforfait();
-
-        $ficheForfaitForm = $this->createForm(FraisForfaitType::class,$ficheForfait);
-
-        $ficheForfaitForm->handleRequest($request);
-
-        if($ficheForfaitForm->isSubmitted() && $ficheForfaitForm->isValid()){
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ficheForfait);
-            $em->flush();
-
-            return $this->redirect('./HorsForfait');
-        }
-        return $this->render('visiteur/ficheForfaitVisiteur.html.twig', [
-            'ficheForfaitForm' => $ficheForfaitForm -> createView(),
-        ]);
-    }*/
-
-    /*public function fraisHorsForfait(Request $request, Request $requestTest): Response
-    {
-        $test = VisiteurController::ficheFrais($requestTest);
-        echo $test->request;
-        $fraisHorsForfait = new Lignefraishorsforfait();
-
-        $fraisHorsForfaitForm = $this->createForm(LigneFraisHorsForfaitType::class,$fraisHorsForfait);
-
-        $fraisHorsForfaitForm->handleRequest($request);
-
-        if($fraisHorsForfaitForm->isSubmitted() && $fraisHorsForfaitForm->isValid()){
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($fraisHorsForfait);
-            $request->request->get('idVisiteur');
-            $em->flush();
-
-            return $this->redirect('./Accueil');
-            return $request;
-        }
-        return $this->render('visiteur/fraisHorsForfaitVisiteur.html.twig', [
-            'fraisHorsForfaitForm' => $fraisHorsForfaitForm -> createView(),
-        ]);
-    }*/
-   
-
+                try {
+                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $ETP["montantETP"], $ETP["libelleETP"]);
+                }
     
-}
+                catch( PDOException $e ){
+                    echo $e->getMessage();
+                }
 
+            }
+
+            if($KM != null){
+                try {
+                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $KM["montantKM"], $KM["libelleKM"]);
+                }
+    
+                catch( PDOException $e ){
+                    echo $e->getMessage();
+                }
+
+            }
+
+            if($NUI != null){
+                try {
+                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $NUI["montantNUI"], $NUI["libelleNUI"]);
+                }
+    
+                catch( PDOException $e ){
+                    echo $e->getMessage();
+                }
+
+            }
+
+            if($REP != null){
+                try {
+                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $REP["montantREP"], $REP["libelleREP"]);
+                }
+    
+                catch( PDOException $e ){
+                    echo $e->getMessage();
+                }
+
+            }
+
+            return $this->redirect('./FicheDeFrais');
+
+        }
+    }
+   
+ 
+}
