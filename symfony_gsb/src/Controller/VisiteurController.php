@@ -26,7 +26,6 @@ class VisiteurController extends AbstractController
         ]);
     }
 
-    //date();
 
     
 
@@ -84,6 +83,18 @@ class VisiteurController extends AbstractController
         if($_SESSION == NULL){
             return $this->redirect('./Connexion');
         }else{
+            $idVisiteur = $_SESSION['idVisiteur'];
+            $verifFicheFrais = ConnexionBdd::verifInsertFicheFrais($idVisiteur);
+
+
+            if(count($verifFicheFrais) != 0){
+                $obj = ConnexionBdd::insertFicheFrais($idVisiteur);
+                $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"ETP");
+                $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"KM");
+                $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"NUI");
+                $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"REP");
+            }
+
             return $this->render('visiteur/accueilVisiteur.html.twig', [
             'controller_name' => 'VisiteurController',
         ]);
@@ -127,16 +138,10 @@ class VisiteurController extends AbstractController
             $NUI = ConnexionBdd::verifMontantNUI($montantNUI);
             $REP = ConnexionBdd::verifMontantREP($montantREP);
 
-            $test = ConnexionBdd::verifInsertFicheFrais($idVisiteur);
-            echo var_dump($test);
-            if($test == true){
-                $obj = ConnexionBdd::insertFicheFrais($idVisiteur);
-            }
-
             if($ETP != null){
 
                 try {
-                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $ETP["montantETP"], $ETP["libelleETP"]);
+                    $obj = ConnexionBdd::updateLigneFraisForfait($idVisiteur, $ETP["montantETP"], $ETP["libelleETP"]);
                 }
     
                 catch( PDOException $e ){
@@ -147,7 +152,7 @@ class VisiteurController extends AbstractController
 
             if($KM != null){
                 try {
-                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $KM["montantKM"], $KM["libelleKM"]);
+                    $obj = ConnexionBdd::updateLigneFraisForfait($idVisiteur, $KM["montantKM"], $KM["libelleKM"]);
                 }
     
                 catch( PDOException $e ){
@@ -158,7 +163,7 @@ class VisiteurController extends AbstractController
 
             if($NUI != null){
                 try {
-                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $NUI["montantNUI"], $NUI["libelleNUI"]);
+                    $obj = ConnexionBdd::updateLigneFraisForfait($idVisiteur, $NUI["montantNUI"], $NUI["libelleNUI"]);
                 }
     
                 catch( PDOException $e ){
@@ -169,7 +174,7 @@ class VisiteurController extends AbstractController
 
             if($REP != null){
                 try {
-                    $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur, $REP["montantREP"], $REP["libelleREP"]);
+                    $obj = ConnexionBdd::updateLigneFraisForfait($idVisiteur, $REP["montantREP"], $REP["libelleREP"]);
                 }
     
                 catch( PDOException $e ){
@@ -178,10 +183,12 @@ class VisiteurController extends AbstractController
 
             }
 
-            return $this->redirect('./FicheDeFrais');
-
         }
+
+        return $this->redirect('./FicheDeFrais');
+
     }
+}
    
  
-}
+

@@ -5,20 +5,20 @@ use PDO;
 /* static = attribue de classe */ 
    class ConnexionBdd{
 
-    private static $connexion = null ;
-	
-    private function __construct(){
-        self::$connexion = new PDO( 'mysql:host=localhost;dbname=gsbFrais' ,'adminGsb' ,'azerty' ) ;
-    }
-
-    private static function getConnexion(){
-        if( self::$connexion == null ){
-            new ConnexionBdd() ;
+        private static $connexion = null ;
+        
+        private function __construct(){
+            self::$connexion = new PDO( 'mysql:host=localhost;dbname=gsbFrais' ,'adminGsb' ,'azerty' ) ;
         }
-        return self::$connexion ;
-    }
 
-       public static function connecterVisiteur($login, $mdp){
+        private static function getConnexion(){
+            if( self::$connexion == null ){
+                new ConnexionBdd() ;
+            }
+            return self::$connexion ;
+        }
+
+        public static function connecterVisiteur($login, $mdp){
             try {
         
                 $bd = ConnexionBdd::getConnexion();
@@ -49,11 +49,12 @@ use PDO;
                     die("Erreur : " . $e->getMessage());
                     header( 'Location: ../index.php?echec=0' ) ;
                 }
-         }
+            }
+            
 
         public static function connecterComptable($login, $mdp){
             try {
-                     
+                        
                 $bd = ConnexionBdd::getConnexion();
         
                 $sql = 'select id ,nom , prenom '
@@ -91,11 +92,11 @@ use PDO;
             $user = array(':idVisiteur' => $idVisiteur
                         );
                         
-            $sql = 'select idVisiteur from LigneFraisForfait WHERE idVisiteur = :idVisiteur';
+            $sql = 'select idVisiteur from FicheFrais WHERE idVisiteur = :idVisiteur';
 
             $query = $bd->prepare($sql);
 
-            $t = $query->fetch(PDO::FETCH_ASSOC);
+            $t = $query->fetchAll();
 
             return $t;
 
@@ -109,14 +110,14 @@ use PDO;
             $date = date('m-Y');
 
             $user = array(':idVisiteur' => $idVisiteur ,
-                          ':AnneeMois' => $date
+                            ':AnneeMois' => $date
                         );
                         
             $sql = 'insert into FicheFrais(idVisiteur,AnneeMois)' . 'values(:idVisiteur, :AnneeMois)';
             
-         
+            
             $query = $bd->prepare($sql);
-         
+            
             return $query->execute($user);
         }
 
@@ -135,7 +136,6 @@ use PDO;
             }
         }
 
-        
 
         public static function verifMontantKM($montantKM){
 
@@ -152,7 +152,6 @@ use PDO;
         }
 
 
-
         public static function verifMontantNUI($montantNUI){
 
             if($montantNUI == 0 ){
@@ -166,8 +165,8 @@ use PDO;
                 return $NUI;
             }
         }
-    
-    
+
+
         public static function verifMontantREP($montantREP){
 
             if($montantREP == 0 ){
@@ -183,24 +182,42 @@ use PDO;
         }
 
 
-
         public static function insertLigneFraisForfait($idVisiteur,$montant,$idFraisForfait){
-           
+            
             $bd = ConnexionBdd::getConnexion();
 
             $date = date('m-Y');
 
             $user = array(':idVisiteur' => $idVisiteur ,
-                          ':AnneeMois' => $date,
-                          ':idFraisForfait' => $idFraisForfait,
-                          ':quantite' => $montant
+                            ':AnneeMois' => $date,
+                            ':idFraisForfait' => $idFraisForfait,
+                            ':quantite' => $montant
                         );
                         
             $sql = 'insert into LigneFraisForfait ' . 'values (:idVisiteur, :AnneeMois, :idFraisForfait, :quantite) ';
             
-         
+            
             $query = $bd->prepare($sql);
-         
+            
+            return $query->execute($user);
+        }
+
+
+        public static function updateLigneFraisForfait($idVisiteur,$montant,$idFraisForfait){
+            $bd = ConnexionBdd::getConnexion();
+
+            $date = date('m-Y');
+
+            $user = array(':idFraisForfait'=>$idFraisForfait, ':quantite'=>$montant, ':idVisiteur'=>$idVisiteur, ':date'=>$date);
+
+            $sql = 'update LigneFraisForfait '
+            . 'set quantite = :quantite '
+            . 'where idFraisForfait = :idFraisForfait '
+            . 'and idVisiteur = :idVisiteur '
+            . 'and AnneeMois = :date '; 
+
+            $query = $bd->prepare($sql);
+            
             return $query->execute($user);
         }
 
