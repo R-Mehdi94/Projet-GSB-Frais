@@ -87,7 +87,7 @@ class VisiteurController extends AbstractController
             $verifFicheFrais = ConnexionBdd::verifInsertFicheFrais($idVisiteur);
 
 
-            if(count($verifFicheFrais) != 0){
+            if($verifFicheFrais == 0){
                 $obj = ConnexionBdd::insertFicheFrais($idVisiteur);
                 $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"ETP");
                 $obj = ConnexionBdd::insertLigneFraisForfait($idVisiteur,0,"KM");
@@ -111,7 +111,7 @@ class VisiteurController extends AbstractController
         if($_SESSION == NULL){
             return $this->redirect('./Connexion');
         }else{
-            return $this->render('visiteur/ficheFraisVisiteur.html.twig', [
+            return $this->render('visiteur/ficheFraisVisiteur.html', [
                 'ficheFraisForm' => 'fiche',
             ]);
         }
@@ -131,7 +131,21 @@ class VisiteurController extends AbstractController
             $montantKM = $_GET['fraisKM'];
             $montantNUI = $_GET['fraisNUI'];
             $montantREP = $_GET['fraisREP'];
+
+            $libelleHF = $_GET['libelle'];
+            $dateHF  = $_GET['date'];
+            $montantHF = $_GET['montant'];
             $idVisiteur = $_SESSION['idVisiteur'];
+
+            if($libelleHF != null && $dateHF != null && $montantHF != null){
+                try{
+                    $obj = ConnexionBdd::insertLigneFraisHorsForfait($idVisiteur, $dateHF, $libelleHF,  $montantHF);
+                }catch( PDOException $e ){
+                    echo $e->getMessage();
+                }
+            }
+
+
 
             $ETP = ConnexionBdd::verifMontantETP($montantETP);
             $KM = ConnexionBdd::verifMontantKM($montantKM);

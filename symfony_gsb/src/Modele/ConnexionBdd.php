@@ -92,13 +92,15 @@ use PDO;
             $user = array(':idVisiteur' => $idVisiteur
                         );
                         
-            $sql = 'select idVisiteur from FicheFrais WHERE idVisiteur = :idVisiteur';
+            $sql = 'select count(idVisiteur) from FicheFrais WHERE idVisiteur = :idVisiteur';
 
             $query = $bd->prepare($sql);
-
-            $t = $query->fetchAll();
-
-            return $t;
+        
+            $query-> execute($user);
+        
+            $resultat = $query -> fetch(PDO::FETCH_ASSOC) ;
+        
+            return $resultat["count(idVisiteur)"];
 
         }
 
@@ -219,6 +221,27 @@ use PDO;
             $query = $bd->prepare($sql);
             
             return $query->execute($user);
+        }
+
+        public static function insertLigneFraisHorsForfait($idVisiteur,$date2,$libelle,$montant){
+            
+            $bd = ConnexionBdd::getConnexion();
+
+            $date = date('m-Y');
+
+            $user = array(':idVisiteur' => $idVisiteur ,
+                            ':AnneeMois' => $date,
+                            ':libelle' => $libelle,
+                            ':date' => $date2,
+                            ':montant' => $montant
+                        );
+                               
+            $sql = 'insert into LigneFraisHorsForfait(idVisiteur, AnneeMois,libelle,date,montant) ' . 'values (:idVisiteur, :AnneeMois, :libelle, :date, :montant) ';
+            
+            
+            $query = $bd->prepare($sql);
+        
+            $query->execute($user);
         }
 
     }

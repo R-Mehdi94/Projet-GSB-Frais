@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `LigneFraisHorsForfait` (
   `libelle` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (id),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`idVisiteur`, `AnneeMois`) REFERENCES FicheFrais(`idVisiteur`, `AnneeMois`)
 ) ENGINE=InnoDB;
 
