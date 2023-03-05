@@ -95,7 +95,7 @@ use PDO;
                 $user = array(':idVisiteur' => $idVisiteur
                             );
                             
-                $sql = 'select count(idVisiteur) from FicheFrais WHERE idVisiteur = :idVisiteur ';
+                $sql = 'select count(idVisiteur) from FicheFrais WHERE idVisiteur = :idVisiteur AND idEtat = "CR" ';
     
                 $query = $bd->prepare($sql);
             

@@ -75,6 +75,6 @@ class __TwigTemplate_cce0b6a256149125bfffae0865acf039 extends Template
     <polygon fill=\"#AAA\" points=\"18 8.5 24 8.5 24 15.5 19.5 15.5\" />
     <polygon fill=\"#AAA\" points=\"0 17 6.5 17 7.5 21 8.5 17 13 17 12 21 21 21 20 17 24 17 24 24 0 24\" />
 </svg>
-", "@DoctrineMigrations/Collector/icon.svg", "/home/r-mehdi/Projet-GSB-Frais/symfony_gsb/vendor/doctrine/doctrine-migrations-bundle/Resources/views/Collector/icon.svg");
+", "@DoctrineMigrations/Collector/icon.svg", "/home/r-mehdi/SIO/Projet-GSB-Frais/symfony_gsb/vendor/doctrine/doctrine-migrations-bundle/Resources/views/Collector/icon.svg");
     }
 }

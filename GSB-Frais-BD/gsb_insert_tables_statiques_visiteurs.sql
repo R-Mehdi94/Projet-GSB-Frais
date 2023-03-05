@@ -74,10 +74,10 @@ INSERT INTO `Comptable` (`id`, `nom`, `prenom`, `login`, `mdp`) VALUES
 
 
 
-/*insert into FicheFrais(idVisiteur,AnneeMois) values("a131", "01-2022");
-insert into LigneFraisForfait values ("a131", "01-2022", "ETP", 0);
-insert into LigneFraisForfait values ("a131", "01-2022", "KM", 0);
-insert into LigneFraisForfait values ("a131", "01-2022", "NUI", 0);
-insert into LigneFraisForfait values ("a131", "01-2022", "REP", 0);*/
+insert into FicheFrais(idVisiteur,mois,AnneeMois) values("a131", "Janvier", "01-2022");
+insert into LigneFraisForfait values ("a131", "Janvier",  "01-2022", "ETP", 0);
+insert into LigneFraisForfait values ("a131", "Janvier",  "01-2022", "KM", 0);
+insert into LigneFraisForfait values ("a131", "Janvier",  "01-2022", "NUI", 0);
+insert into LigneFraisForfait values ("a131", "Janvier",  "01-2022", "REP", 0);
 
 

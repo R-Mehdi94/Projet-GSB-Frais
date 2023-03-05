@@ -26,5 +26,13 @@ return [
     'app_SupprimerFicheHorsForfait' => [[], ['_controller' => 'App\\Controller\\VisiteurController::supprimerFicheHorsForfait'], [], [['text', '/Visiteur/SupprimerFicheHorsForfait']], [], [], []],
     'app_ComptableConnexion' => [[], ['_controller' => 'App\\Controller\\ComptableController::connexion'], [], [['text', '/Comptable/Connexion']], [], [], []],
     'app_ComptableConnecter' => [[], ['_controller' => 'App\\Controller\\ComptableController::connecter'], [], [['text', '/Comptable/Connecter']], [], [], []],
+    'app_ComptableDeconnecter' => [[], ['_controller' => 'App\\Controller\\ComptableController::deconnecter'], [], [['text', '/Comptable/Deconnecter']], [], [], []],
     'app_ComptableAccueil' => [[], ['_controller' => 'App\\Controller\\ComptableController::accueil'], [], [['text', '/Comptable/Accueil']], [], [], []],
+    'app_ComptableFicheFormulaire' => [[], ['_controller' => 'App\\Controller\\ComptableController::formulaireFicheFrais'], [], [['text', '/Comptable/FormulaireFicheFrais']], [], [], []],
+    'app_ComptableFicheValideFormulaire' => [[], ['_controller' => 'App\\Controller\\ComptableController::formulaireValiderFicheFrais'], [], [['text', '/Comptable/FormulaireValiderFicheFrais']], [], [], []],
+    'app_ComptableFiche' => [[], ['_controller' => 'App\\Controller\\ComptableController::suivreFicheFrais'], [], [['text', '/Comptable/SuivreFicheFrais']], [], [], []],
+    'app_ComptableModifFiche' => [[], ['_controller' => 'App\\Controller\\ComptableController::modif'], [], [['text', '/Comptable/SuivreFicheFrais/Modifier']], [], [], []],
+    'app_ComptableModifierFiche' => [[], ['_controller' => 'App\\Controller\\ComptableController::modifierFicheFrais'], [], [['text', '/Comptable/SuivreFicheFrais/ModifierFicheFrais']], [], [], []],
+    'app_ComptableDetailFiche' => [[], ['_controller' => 'App\\Controller\\ComptableController::detailFicheFrais'], [], [['text', '/Comptable/SuivreFicheFrais/DetailFicheFrais']], [], [], []],
+    'app_ComptableRembourserFiche' => [[], ['_controller' => 'App\\Controller\\ComptableController::rembourserFicheFrais'], [], [['text', '/Comptable/SuivreFicheFrais/Rembourser']], [], [], []],
 ];

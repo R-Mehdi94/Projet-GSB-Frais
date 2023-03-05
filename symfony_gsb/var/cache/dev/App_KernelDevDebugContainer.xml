@@ -355,6 +355,8 @@
         <argument type="service" id=".service_locator.jIxfAsi.App\Controller\VisiteurController"/>
       </call>
     </service>
+    <service id="App\Modele\ConnexionUtilisateur" class="App\Modele\ConnexionUtilisateur" autowire="true" autoconfigure="true"/>
+    <service id="App\Modele\SuivreFicheFrais_Comptable" class="App\Modele\SuivreFicheFrais_Comptable" autowire="true" autoconfigure="true"/>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="response_listener" class="Symfony\Component\HttpKernel\EventListener\ResponseListener">
       <tag name="kernel.event_subscriber"/>

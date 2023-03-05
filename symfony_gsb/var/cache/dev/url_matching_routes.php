@@ -24,7 +24,15 @@ return [
         '/Visiteur/SupprimerFicheHorsForfait' => [[['_route' => 'app_SupprimerFicheHorsForfait', '_controller' => 'App\\Controller\\VisiteurController::supprimerFicheHorsForfait'], null, ['POST' => 0], null, false, false, null]],
         '/Comptable/Connexion' => [[['_route' => 'app_ComptableConnexion', '_controller' => 'App\\Controller\\ComptableController::connexion'], null, null, null, false, false, null]],
         '/Comptable/Connecter' => [[['_route' => 'app_ComptableConnecter', '_controller' => 'App\\Controller\\ComptableController::connecter'], null, null, null, false, false, null]],
+        '/Comptable/Deconnecter' => [[['_route' => 'app_ComptableDeconnecter', '_controller' => 'App\\Controller\\ComptableController::deconnecter'], null, null, null, false, false, null]],
         '/Comptable/Accueil' => [[['_route' => 'app_ComptableAccueil', '_controller' => 'App\\Controller\\ComptableController::accueil'], null, null, null, false, false, null]],
+        '/Comptable/FormulaireFicheFrais' => [[['_route' => 'app_ComptableFicheFormulaire', '_controller' => 'App\\Controller\\ComptableController::formulaireFicheFrais'], null, null, null, false, false, null]],
+        '/Comptable/FormulaireValiderFicheFrais' => [[['_route' => 'app_ComptableFicheValideFormulaire', '_controller' => 'App\\Controller\\ComptableController::formulaireValiderFicheFrais'], null, null, null, false, false, null]],
+        '/Comptable/SuivreFicheFrais' => [[['_route' => 'app_ComptableFiche', '_controller' => 'App\\Controller\\ComptableController::suivreFicheFrais'], null, null, null, false, false, null]],
+        '/Comptable/SuivreFicheFrais/Modifier' => [[['_route' => 'app_ComptableModifFiche', '_controller' => 'App\\Controller\\ComptableController::modif'], null, null, null, false, false, null]],
+        '/Comptable/SuivreFicheFrais/ModifierFicheFrais' => [[['_route' => 'app_ComptableModifierFiche', '_controller' => 'App\\Controller\\ComptableController::modifierFicheFrais'], null, null, null, false, false, null]],
+        '/Comptable/SuivreFicheFrais/DetailFicheFrais' => [[['_route' => 'app_ComptableDetailFiche', '_controller' => 'App\\Controller\\ComptableController::detailFicheFrais'], null, null, null, false, false, null]],
+        '/Comptable/SuivreFicheFrais/Rembourser' => [[['_route' => 'app_ComptableRembourserFiche', '_controller' => 'App\\Controller\\ComptableController::rembourserFicheFrais'], null, null, null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'

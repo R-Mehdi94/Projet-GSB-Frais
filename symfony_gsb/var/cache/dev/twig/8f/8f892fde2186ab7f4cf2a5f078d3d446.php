@@ -95,6 +95,6 @@ class __TwigTemplate_c66619407125ff105fd17df1480b728f extends Template
 </html>
 
 
-", "accueil/index.html.twig", "/home/r-mehdi/Projet-GSB-Frais/symfony_gsb/templates/accueil/index.html.twig");
+", "accueil/index.html.twig", "/home/r-mehdi/SIO/Projet-GSB-Frais/symfony_gsb/templates/accueil/index.html.twig");
     }
 }

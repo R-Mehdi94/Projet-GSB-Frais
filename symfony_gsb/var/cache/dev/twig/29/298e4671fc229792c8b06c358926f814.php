@@ -73,6 +73,6 @@ class __TwigTemplate_ca5c71333e5eab881f55edbdc5874503 extends Template
 
     <button> <a href=\"./Deconnecter\"</a> Se Deconnecter </button>
 
-", "visiteur/accueilVisiteur.html.twig", "/home/r-mehdi/Projet-GSB-Frais/symfony_gsb/templates/visiteur/accueilVisiteur.html.twig");
+", "visiteur/accueilVisiteur.html.twig", "/home/r-mehdi/SIO/Projet-GSB-Frais/symfony_gsb/templates/visiteur/accueilVisiteur.html.twig");
     }
 }
