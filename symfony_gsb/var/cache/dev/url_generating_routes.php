@@ -23,6 +23,7 @@ return [
     'app_VisiteurAccueil' => [[], ['_controller' => 'App\\Controller\\VisiteurController::accueil'], [], [['text', '/Visiteur/Accueil']], [], [], []],
     'app_VisiteurFicheFraisVue' => [[], ['_controller' => 'App\\Controller\\VisiteurController::ficheFraisVue'], [], [['text', '/Visiteur/FicheDeFrais']], [], [], []],
     'app_VisiteurFicheFrais' => [[], ['_controller' => 'App\\Controller\\VisiteurController::ficheFrais'], [], [['text', '/Visiteur/FicheDeFraisController']], [], [], []],
+    'app_SupprimerFicheHorsForfait' => [[], ['_controller' => 'App\\Controller\\VisiteurController::supprimerFicheHorsForfait'], [], [['text', '/Visiteur/SupprimerFicheHorsForfait']], [], [], []],
     'app_ComptableConnexion' => [[], ['_controller' => 'App\\Controller\\ComptableController::connexion'], [], [['text', '/Comptable/Connexion']], [], [], []],
     'app_ComptableConnecter' => [[], ['_controller' => 'App\\Controller\\ComptableController::connecter'], [], [['text', '/Comptable/Connecter']], [], [], []],
     'app_ComptableAccueil' => [[], ['_controller' => 'App\\Controller\\ComptableController::accueil'], [], [['text', '/Comptable/Accueil']], [], [], []],

@@ -75,14 +75,15 @@ CREATE TABLE IF NOT EXISTS `Visiteur` (
 -- Structure de la table `FicheFrais`
 --
 
-CREATE TABLE IF NOT EXISTS `FicheFrais` (
+  CREATE TABLE IF NOT EXISTS `FicheFrais` (
   `idVisiteur` char(4) NOT NULL,
+  `mois` char(20) DEFAULT NULL,
   `AnneeMois` char(7) NOT NULL,
-  `nbJustificatifs` int(11) DEFAULT NULL,
-  `montantValide` decimal(10,2) DEFAULT NULL,
+  `nbJustificatifs` int(11) DEFAULT 0,
+  `montantValide` decimal(10,2) DEFAULT 0,
   `dateModif` date DEFAULT NULL,
   `idEtat` char(2) DEFAULT 'CR',
-  PRIMARY KEY (`idVisiteur`,`AnneeMois`),
+  PRIMARY KEY (`idVisiteur`,`AnneeMois`, `idEtat`),
   FOREIGN KEY (`idEtat`) REFERENCES Etat(`id`),
   FOREIGN KEY (`idVisiteur`) REFERENCES Visiteur(`id`)
 ) ENGINE=InnoDB;
@@ -96,6 +97,7 @@ CREATE TABLE IF NOT EXISTS `FicheFrais` (
 
 CREATE TABLE IF NOT EXISTS `LigneFraisForfait` (
   `idVisiteur` char(4) NOT NULL,
+  `mois` char(20) DEFAULT NULL,
   `AnneeMois` char(7) NOT NULL,
   `idFraisForfait` char(3) NOT NULL,
   `quantite` int(11) DEFAULT NULL,
@@ -113,6 +115,7 @@ CREATE TABLE IF NOT EXISTS `LigneFraisForfait` (
 CREATE TABLE IF NOT EXISTS `LigneFraisHorsForfait` (
   `id` int(11) NOT NULL auto_increment,
   `idVisiteur` char(4) NOT NULL,
+  `mois` char(20) DEFAULT NULL,
   `AnneeMois` char(7) NOT NULL,
   `libelle` varchar(100) DEFAULT NULL,
   `date` date DEFAULT NULL,

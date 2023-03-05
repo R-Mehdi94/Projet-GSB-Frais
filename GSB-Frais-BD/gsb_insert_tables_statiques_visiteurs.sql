@@ -60,5 +60,24 @@ INSERT INTO `Visiteur` (`id`, `nom`, `prenom`, `login`, `mdp`, `adresse`, `cp`, 
 --
 
 INSERT INTO `Comptable` (`id`, `nom`, `prenom`, `login`, `mdp`) VALUES
-('c1', 'Boboch', 'Rémi', 'rboboch', 'azerty');
+('c1', 'Boboch', 'Rémi', 'rboboch', 'azerty'),
+('c2', 'Villechalane', 'Louis', 'lvillachane', 'jux7g'),
+('c3', 'Mordak', 'Xavier', 'xmordak', 'azerty');
 -- --------------------------------------------------------
+
+/*INSERT INTO `FicheFrais` (`idVisiteur`, `mois`, `nbJustificatifs`, `montantValide`, `dateModif`, `idEtat`) VALUES
+('a131', 'Janvier', 0, 52.00, '2022-03-12', 'RB'),
+('d51', 'Mars', 3, 32.00, '2022-07-24', 'CR'),
+('d51', 'Mars', 14, 5.00, '2022-07-05', 'VA'),
+('e5', 'Novembre', 5, 100.00, '2022-12-01', 'VA'),
+('a93', 'Avril', 2, 45.00, '2022-05-29', 'CL');*/
+
+
+
+/*insert into FicheFrais(idVisiteur,AnneeMois) values("a131", "01-2022");
+insert into LigneFraisForfait values ("a131", "01-2022", "ETP", 0);
+insert into LigneFraisForfait values ("a131", "01-2022", "KM", 0);
+insert into LigneFraisForfait values ("a131", "01-2022", "NUI", 0);
+insert into LigneFraisForfait values ("a131", "01-2022", "REP", 0);*/
+
+

@@ -21,6 +21,7 @@ return [
         '/Visiteur/Accueil' => [[['_route' => 'app_VisiteurAccueil', '_controller' => 'App\\Controller\\VisiteurController::accueil'], null, null, null, false, false, null]],
         '/Visiteur/FicheDeFrais' => [[['_route' => 'app_VisiteurFicheFraisVue', '_controller' => 'App\\Controller\\VisiteurController::ficheFraisVue'], null, null, null, false, false, null]],
         '/Visiteur/FicheDeFraisController' => [[['_route' => 'app_VisiteurFicheFrais', '_controller' => 'App\\Controller\\VisiteurController::ficheFrais'], null, null, null, false, false, null]],
+        '/Visiteur/SupprimerFicheHorsForfait' => [[['_route' => 'app_SupprimerFicheHorsForfait', '_controller' => 'App\\Controller\\VisiteurController::supprimerFicheHorsForfait'], null, ['POST' => 0], null, false, false, null]],
         '/Comptable/Connexion' => [[['_route' => 'app_ComptableConnexion', '_controller' => 'App\\Controller\\ComptableController::connexion'], null, null, null, false, false, null]],
         '/Comptable/Connecter' => [[['_route' => 'app_ComptableConnecter', '_controller' => 'App\\Controller\\ComptableController::connecter'], null, null, null, false, false, null]],
         '/Comptable/Accueil' => [[['_route' => 'app_ComptableAccueil', '_controller' => 'App\\Controller\\ComptableController::accueil'], null, null, null, false, false, null]],

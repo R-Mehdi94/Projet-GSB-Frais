@@ -35,6 +35,10 @@ app_VisiteurFicheFrais:
   path: /Visiteur/FicheDeFraisController
   controller: App\Controller\VisiteurController::ficheFrais 
 
+app_SupprimerFicheHorsForfait:
+  path: /Visiteur/SupprimerFicheHorsForfait
+  controller: App\Controller\VisiteurController::supprimerFicheHorsForfait
+  methods: [POST]
 
 #Comptable----------------------------------------------------------
 
